@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import { useEffect, useState } from "react";
+import Mycard from "./components/Mycard";
+import Navbar from "./components/Navbar";
+import { getApiKey } from "./api/ApiKey";
+import { Grid } from "@material-ui/core";
+import { Fragment } from "react";
 function App() {
+  const [matches, setMatches] = useState([]);
+
+  useEffect(() => {
+    getApiKey()
+      .then((data) => setMatches(data.matches))
+      .catch();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <h1>welcome to live cricket scores</h1>
+      <Grid container>
+        <Grid sm="2"></Grid>
+        <Grid sm="8">
+          {matches.map((match) => (
+            <Fragment>
+              {match.type === "Twenty20" ? (
+                <Mycard key={match.unique_id} match={match} />
+              ) : (
+                ""
+              )}
+            </Fragment>
+          ))}
+        </Grid>
+      </Grid>
+    </>
   );
 }
 
