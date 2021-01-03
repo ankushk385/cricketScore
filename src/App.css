@@ -23,3 +23,16 @@ h3 {
 body {
   background-color: #01579b;
 }
+
+@media (max-width: 480px) {
+  .logoClass img {
+    width: 90px;
+    height: 90px;
+  }
+  .detailClass Button {
+    font-size: 0.6rem;
+  }
+  h3 {
+    font-size: 1.4rem;
+  }
+}

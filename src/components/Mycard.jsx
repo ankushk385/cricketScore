@@ -25,6 +25,7 @@ const Mycard = ({ match }) => {
     handleOpen();
     getDialog();
     // console.log(details);
+    // console.log([match]);
   };
 
   const handleClose = () => {
@@ -53,7 +54,7 @@ const Mycard = ({ match }) => {
             </Typography>
           </DialogContentText>
           <DialogContentText>
-            <Typography>
+            {/* <Typography>
               Match Status : {"  "}
               <span
                 style={{
@@ -63,6 +64,16 @@ const Mycard = ({ match }) => {
                 {details.matchStarted
                   ? "match has started"
                   : "match is not yet started"}
+              </span>
+            </Typography> */}
+            <Typography>
+              Winner Team :{" "}
+              <span
+                style={{
+                  fontWeight: "bolder",
+                }}
+              >
+                {match["winner_team"]}
               </span>
             </Typography>
           </DialogContentText>
@@ -77,11 +88,11 @@ const Mycard = ({ match }) => {
     return (
       <Card style={{ margin: "10px", backgroundColor: "#c8e6c9" }}>
         <CardContent>
-          <Grid container spacing={4} alignItems="center">
-            <Grid item sm="4">
+          <Grid container spacing={4} alignItems="center" className="logoClass">
+            <Grid item sm={4} xs={12}>
               <h3>{match["team-1"]}</h3>
             </Grid>
-            <Grid item sm="4">
+            <Grid item sm={4} xs={12} container justify="center">
               <img
                 src={Vs}
                 alt="..."
@@ -90,18 +101,20 @@ const Mycard = ({ match }) => {
                 style={{ borderRadius: "50%" }}
               />
             </Grid>
-            <Grid item sm="4">
+            <Grid item sm={4} xs={12}>
               <h3>{match["team-2"]}</h3>
             </Grid>
           </Grid>
 
           <Grid
             container
-            justify="center"
-            alignItems="center"
             style={{ marginTop: "12px" }}
+            justify="center"
+            className="detailClass"
+            direction="column"
+            alignItems="center"
           >
-            <Grid sm="6" style={{}}>
+            <Grid sm={6} xs={6} style={{ paddingBottom: "5px" }}>
               <Button
                 onClick={() => {
                   handleClick(match.unique_id);
@@ -117,7 +130,7 @@ const Mycard = ({ match }) => {
               </Button>
             </Grid>
 
-            <Grid sm="6" style={{}}>
+            <Grid sm={6} xs={6} style={{}}>
               <Button
                 item
                 style={{
